@@ -12,6 +12,5 @@ public class SessionFactoryUtil {
 		SessionFactory sessionFactory = configuration.buildSessionFactory();
 		
 		System.out.println(sessionFactory);
-		
 	}
 }
