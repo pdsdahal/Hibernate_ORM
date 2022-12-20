@@ -1,18 +1,18 @@
 package com.hibernatedemo.model;
 
 import java.util.Date;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
-import jakarta.persistence.Transient;
-
-@Entity
+@Entity(name = "college")
 @Table(name = "college")
 public class College {
 
@@ -40,7 +40,18 @@ public class College {
 	@Temporal(TemporalType.DATE)
 	private Date collegeEstDate;
 	
+	@Column(name = "logo", columnDefinition = "LONGBLOB" )
+	@Lob
+	private byte[] collegeLogo;
 	
+	
+	public byte[] getCollegeLogo() {
+		return collegeLogo;
+	}
+
+	public void setCollegeLogo(byte[] collegeLogo) {
+		this.collegeLogo = collegeLogo;
+	}
 
 	public int getFlag() {
 		return flag;
