@@ -2,6 +2,7 @@ package com.hibernatedemo.model;
 
 import java.util.Date;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,10 +24,7 @@ public class College {
 
 	@Column(name = "college_name", nullable = false, unique = true, length = 300)
 	private String collegeName;
-
-	@Column(name = "college_address", nullable = false)
-	private String collegeAddress;
-
+	
 	@Column(name = "college_email", nullable = false, unique = true)
 	private String collegeEmail;
 
@@ -43,6 +41,18 @@ public class College {
 	@Column(name = "logo", columnDefinition = "LONGBLOB" )
 	@Lob
 	private byte[] collegeLogo;
+	
+	@Embedded
+	private Address address;
+	
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
 	
 	
 	public byte[] getCollegeLogo() {
@@ -83,14 +93,6 @@ public class College {
 
 	public void setCollegeName(String collegeName) {
 		this.collegeName = collegeName;
-	}
-
-	public String getCollegeAddress() {
-		return collegeAddress;
-	}
-
-	public void setCollegeAddress(String collegeAddress) {
-		this.collegeAddress = collegeAddress;
 	}
 
 	public String getCollegeEmail() {

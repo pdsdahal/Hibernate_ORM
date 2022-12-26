@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Date;
 
+import com.hibernatedemo.model.Address;
 import com.hibernatedemo.model.College;
 import com.hibernatedemo.serviceimpl.CollgeServiceImpl;
 
@@ -15,18 +16,27 @@ public class MainHibernateClass {
 
 		CollgeServiceImpl collegeImplObj = new CollgeServiceImpl();
 		
+	
 		// Insert
 		
 		College addCollegeObj = new College();
-		addCollegeObj.setCollegeName("XYZ International College");
-		addCollegeObj.setCollegeAddress("Mitrapark 1 Baneshowr");
-		addCollegeObj.setCollegeEmail("xyz@gmail.com");
-		addCollegeObj.setCollegePhoneNo("345678");
+		addCollegeObj.setCollegeName("KEC International College");
+		addCollegeObj.setCollegeEmail("kec@gmail.com");
+		addCollegeObj.setCollegePhoneNo("45356345678");
 		addCollegeObj.setCollegeEstDate(new Date());
 
 		String filePathAdd = "src/main/resources/images/ADD.jpg";
 		Path pathAdd = Paths.get(filePathAdd);
 		byte[] byteImageFileAdd = Files.readAllBytes(pathAdd);
+		
+		
+		Address address = new Address();
+		address.setWardNo(1);
+		address.setCountryName("Nepal");
+		address.setMunicipalityName("Kathmandu");
+		address.setProvinceName("Bagmati");
+		
+		addCollegeObj.setAddress(address);
 		addCollegeObj.setCollegeLogo(byteImageFileAdd);
 
 		int addFlag = collegeImplObj.addCollege(addCollegeObj);
@@ -37,12 +47,18 @@ public class MainHibernateClass {
 		}
 
 		
-		
+		/*
 		//update
 		College updateCollegeObj = new College();
 		updateCollegeObj.setCollegeId(1);
 		updateCollegeObj.setCollegeName("Texas International College");
-		updateCollegeObj.setCollegeAddress("Mitrapark 1 Baneshowr");
+		
+		Address address1 = new Address();
+		address1.setWardNo(1);
+		address1.setCountryName("Nepal");
+		address1.setMunicipalityName("Kathmandu");
+		address1.setProvinceName("Bagmati");
+		updateCollegeObj.setAddress(address1);
 		updateCollegeObj.setCollegeEmail("texas@gmail.com");
 		updateCollegeObj.setCollegePhoneNo("4567890");
 		updateCollegeObj.setCollegeEstDate(new Date());
@@ -58,7 +74,7 @@ public class MainHibernateClass {
 		} else {
 			System.out.println("Failed to Update!!!");
 		}
-
+		*/
 	}
 
 }
