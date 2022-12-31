@@ -16,6 +16,9 @@
 	<property name="hbm2ddl.auto">update</property>
 	
 	<mapping class="com.hibernatedemo.model.College"/>
+	<mapping class="com.hibernatedemo.model.CollegeContactInfo"/>
+	
+	
 
 	</session-factory>
 </hibernate-configuration>

@@ -1,13 +1,18 @@
 package com.hibernatedemo.model;
 
 import java.util.Date;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -25,12 +30,6 @@ public class College {
 	@Column(name = "college_name", nullable = false, unique = true, length = 300)
 	private String collegeName;
 	
-	@Column(name = "college_email", nullable = false, unique = true)
-	private String collegeEmail;
-
-	@Column(name = "college_phoneno", nullable = false, unique = true)
-	private String collegePhoneNo;
-
 	@Transient
 	private int flag;
 	
@@ -45,6 +44,21 @@ public class College {
 	@Embedded
 	private Address address;
 	
+	
+	@OneToOne(fetch =  FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "contact_id", referencedColumnName = "contact_id")
+	private CollegeContactInfo collegeContactInfo;
+	
+	
+	
+	public CollegeContactInfo getCollegeContactInfo() {
+		return collegeContactInfo;
+	}
+
+	public void setCollegeContactInfo(CollegeContactInfo collegeContactInfo) {
+		this.collegeContactInfo = collegeContactInfo;
+	}
+
 	public Address getAddress() {
 		return address;
 	}
@@ -95,19 +109,4 @@ public class College {
 		this.collegeName = collegeName;
 	}
 
-	public String getCollegeEmail() {
-		return collegeEmail;
-	}
-
-	public void setCollegeEmail(String collegeEmail) {
-		this.collegeEmail = collegeEmail;
-	}
-
-	public String getCollegePhoneNo() {
-		return collegePhoneNo;
-	}
-
-	public void setCollegePhoneNo(String collegePhoneNo) {
-		this.collegePhoneNo = collegePhoneNo;
-	}
 }
