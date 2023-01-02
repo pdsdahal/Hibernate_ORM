@@ -17,8 +17,7 @@
 	
 	<mapping class="com.hibernatedemo.model.College"/>
 	<mapping class="com.hibernatedemo.model.CollegeContactInfo"/>
-	
-	
-
+	<mapping class="com.hibernatedemo.model.Department"/>
+		
 	</session-factory>
 </hibernate-configuration>

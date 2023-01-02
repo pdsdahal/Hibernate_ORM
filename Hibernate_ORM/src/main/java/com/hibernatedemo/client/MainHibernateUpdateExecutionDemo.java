@@ -8,6 +8,7 @@ import java.util.Date;
 
 import com.hibernatedemo.model.Address;
 import com.hibernatedemo.model.College;
+import com.hibernatedemo.model.CollegeContactInfo;
 import com.hibernatedemo.serviceimpl.CollgeServiceImpl;
 
 public class MainHibernateUpdateExecutionDemo {
@@ -16,28 +17,33 @@ public class MainHibernateUpdateExecutionDemo {
 
 		CollgeServiceImpl collegeImplObj = new CollgeServiceImpl();
 		
-	
-	
 		College collegeObj = new College();
 		collegeObj.setCollegeId(1);
-		collegeObj.setCollegeName("Texas International College");
 		
-		Address address1 = new Address();
-		address1.setWardNo(1);
-		address1.setCountryName("Nepal");
-		address1.setMunicipalityName("Kathmandu");
-		address1.setProvinceName("Bagmati");
+		collegeObj.setCollegeName("ABC International College");
+
 		
-		collegeObj.setAddress(address1);
-		//collegeObj.setCollegeEmail("texas@gmail.com");
-		//collegeObj.setCollegePhoneNo("4567890");
+		CollegeContactInfo collegeContactInfo = new CollegeContactInfo();
+		collegeContactInfo.setCollegeContactInfoId(1);
+		collegeContactInfo.setCollegeEmail("abc@gmail.com");
+		collegeContactInfo.setCollegePhoneNo("456789");
+		collegeObj.setCollegeContactInfo(collegeContactInfo);
+		
 		collegeObj.setCollegeEstDate(new Date());
 
-		String filePath = "src/main/resources/images/Product.png";
-		Path path = Paths.get(filePath);
-		byte[] byteImageFile = Files.readAllBytes(path);
-		collegeObj.setCollegeLogo(byteImageFile);
-		
+		String filePathAdd = "src/main/resources/images/ADD.jpg";
+		Path pathAdd = Paths.get(filePathAdd);
+		byte[] byteImageFileAdd = Files.readAllBytes(pathAdd);
+
+		Address address = new Address();
+		address.setWardNo(1);
+		address.setCountryName("Nepal");
+		address.setMunicipalityName("Bhaktapur");
+		address.setProvinceName("Bagmati");
+
+		collegeObj.setAddress(address);
+		collegeObj.setCollegeLogo(byteImageFileAdd);
+
 		int updateFlag = collegeImplObj.updateCollege(collegeObj);
 		if (updateFlag >= 1) {
 			System.out.println("Data Updated!!!");

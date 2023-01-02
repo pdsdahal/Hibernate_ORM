@@ -1,6 +1,7 @@
 package com.hibernatedemo.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -49,8 +51,18 @@ public class College {
 	@JoinColumn(name = "contact_id", referencedColumnName = "contact_id")
 	private CollegeContactInfo collegeContactInfo;
 	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "college")
+	private List<Department> departments;
 	
 	
+	public List<Department> getDepartments() {
+		return departments;
+	}
+
+	public void setDepartments(List<Department> departments) {
+		this.departments = departments;
+	}
+
 	public CollegeContactInfo getCollegeContactInfo() {
 		return collegeContactInfo;
 	}

@@ -16,7 +16,9 @@ public class MainHibernateSelectsExecutionDemo {
 		List<College> lstColeges = collegeImplObj.getColleges();
 		for(College college :  lstColeges) {
 			System.out.println("Id : " + college.getCollegeId() + " Name : "+college.getCollegeName());
-			System.out.println("Country Name : "+college.getAddress().getCountryName() + " Province Name : "+college.getAddress().getProvinceName()+"\n");			
+			System.out.println("Country Name : "+college.getAddress().getCountryName() + " Province Name : "+college.getAddress().getProvinceName()+"\n");
+			System.out.println("Phone No : "+college.getCollegeContactInfo().getCollegePhoneNo());
+			System.out.println("Email : "+college.getCollegeContactInfo().getCollegeEmail());
 		}
 		
 	}
